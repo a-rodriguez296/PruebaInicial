@@ -14,6 +14,7 @@ import butterknife.InjectView;
 
 public class MainActivity extends Activity {
 
+    public static final String MODEL = "model";
 
     public static final int ARGUMENT_REQUEST = 1;
 
@@ -23,10 +24,11 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
         ButterKnife.inject(this);
-        hola.setText("asdfadsfasdf");
+
+        Model model = (Model) getIntent().getSerializableExtra(MODEL);
+        hola.setText(model.getName());
     }
 
 
@@ -70,8 +72,8 @@ public class MainActivity extends Activity {
 
         if (requestCode == ARGUMENT_REQUEST && resultCode == RESULT_OK) {
 
-            int b = data.getIntExtra(MainActivity2.EXTRA_ARGUMENT, 0);
-            int i = b - 500;
+            //int b = data.getIntExtra(MainActivity2.EXTRA_ARGUMENT, 0);
+            //int i = b - 500;
         }
 
 
