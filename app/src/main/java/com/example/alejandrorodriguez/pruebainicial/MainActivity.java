@@ -8,7 +8,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
@@ -20,16 +19,14 @@ public class MainActivity extends Activity {
 
     @InjectView(R.id.textHola) TextView hola;
 
-    private TextView pedro = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ButterKnife.inject(this);
+
         setContentView(R.layout.activity_main);
-
-
-        pedro = (TextView) findViewById(R.id.textHola);
+        ButterKnife.inject(this);
+        hola.setText("asdfadsfasdf");
     }
 
 
@@ -56,9 +53,9 @@ public class MainActivity extends Activity {
     }
 
 
-    public void btnTapped(View view){
+    public void btnTapped(View view) {
 
-        Intent mainActivity2Intent = new Intent(this,MainActivity2.class);
+        Intent mainActivity2Intent = new Intent(this, MainActivity2.class);
 
         mainActivity2Intent.putExtra(MainActivity2.EXTRA_ARGUMENT, 1098);
 
@@ -71,9 +68,9 @@ public class MainActivity extends Activity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == ARGUMENT_REQUEST && resultCode == RESULT_OK){
+        if (requestCode == ARGUMENT_REQUEST && resultCode == RESULT_OK) {
 
-            int b = data.getIntExtra(MainActivity2.EXTRA_ARGUMENT,0);
+            int b = data.getIntExtra(MainActivity2.EXTRA_ARGUMENT, 0);
             int i = b - 500;
         }
 
