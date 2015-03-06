@@ -1,35 +1,22 @@
 package com.example.alejandrorodriguez.pruebainicial;
 
-import android.app.Activity;
 import android.os.Bundle;
-import android.widget.TextView;
+import android.support.v4.app.Fragment;
 
-import butterknife.ButterKnife;
-import butterknife.InjectView;
+/**
+ * Created by alejandrorodriguez on 3/4/15.
+ */
+public class MainActivity2  extends FragmentContainerActivity{
 
-
-public class MainActivity2 extends Activity {
-
-    public static final String EXTRA_ARGUMENT = "extra";
-    public static final String MODEL = "model";
-
-    @InjectView(R.id.LargeText) TextView text;
-
-    private int a = 0;
+    public static final String MODEL = "activity.model";
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_activity2);
-        ButterKnife.inject(this);
+    public Fragment createFragment() {
 
-        Model model = (Model) getIntent().getSerializableExtra(MODEL);
-        text.setText(model.getName());
-
-
-
-
-
-
+        Bundle arguments =  new Bundle();
+        arguments.putSerializable(MainActivityFragment.ARG_MODEL,getIntent().getSerializableExtra(MODEL));
+        MainActivityFragment fragment = new MainActivityFragment();
+        fragment.setArguments(arguments);
+        return fragment;
     }
 }

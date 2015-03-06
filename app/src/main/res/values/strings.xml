@@ -8,5 +8,8 @@
     <string name="tab1">Tab 1</string>
     <string name="tab2">Tab 2</string>
     <string name="title_activity_tab_container">TabContainer</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_main_activity_fragment">MainActivityFragment</string>
+    <string name="title_activity_main">MainActivity</string>
 
 </resources>

@@ -1,81 +1,19 @@
 package com.example.alejandrorodriguez.pruebainicial;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.TextView;
+import android.support.v4.app.Fragment;
 
-import butterknife.ButterKnife;
-import butterknife.InjectView;
+public class MainActivity extends FragmentContainerActivity {
 
-
-public class MainActivity extends Activity {
-
-    public static final String MODEL = "model";
-
-    public static final int ARGUMENT_REQUEST = 1;
-
-    @InjectView(R.id.textHola) TextView hola;
+    public static final String MODEL = "activity.model";
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        ButterKnife.inject(this);
-
-        Model model = (Model) getIntent().getSerializableExtra(MODEL);
-        hola.setText(model.getName());
-    }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-
-    public void btnTapped(View view) {
-
-        Intent mainActivity2Intent = new Intent(this, MainActivity2.class);
-
-        mainActivity2Intent.putExtra(MainActivity2.EXTRA_ARGUMENT, 1098);
-
-        startActivityForResult(mainActivity2Intent, ARGUMENT_REQUEST);
-
-    }
-
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == ARGUMENT_REQUEST && resultCode == RESULT_OK) {
-
-            //int b = data.getIntExtra(MainActivity2.EXTRA_ARGUMENT, 0);
-            //int i = b - 500;
-        }
-
-
+    public Fragment createFragment() {
+        Bundle arguments =  new Bundle();
+        arguments.putSerializable(MainActivityFragment.ARG_MODEL,getIntent().getSerializableExtra(MODEL));
+        MainActivityFragment fragment = new MainActivityFragment();
+        fragment.setArguments(arguments);
+       return fragment;
     }
 }
