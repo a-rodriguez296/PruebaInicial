@@ -30,7 +30,7 @@ public class MainActivityFragment extends Fragment {
         super.onCreateView(inflater, container, savedInstanceState);
         View root = inflater.inflate(R.layout.fragment_main,container,false);
 
-        ButterKnife.inject(root);
+        ButterKnife.inject(this,root);
 
 
         Model model = (Model) getArguments().getSerializable(ARG_MODEL);
